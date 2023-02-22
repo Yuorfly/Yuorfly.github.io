@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>lirk随行</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FreeRTOS顾名思义：免费的实时操作系统操作系统:操作系统是允许多个任务“同时运行”的，操作系统的这个特性被称为多任务。然而实际上，一个 CPU 核心在某一时刻只能运行一个任务，而操作系统中任务调度器的责任就是决定在某一时刻 CPU 究竟要运行哪一个任务，任务调度器使得 CPU 在各个任务之间来回切换并处理任务，由于切换处理任务的速度非常快，因此就给人造成了一种同一时刻有多个任务同时运行的错觉">
+<meta property="og:type" content="website">
+<meta property="og:title" content="lirk随行">
+<meta property="og:url" content="https://yuhuofei.com.cn/blog/%E5%AD%A6%E4%B9%A0freertos%E7%9A%84%E7%AC%94%E8%AE%B0/freertos.html">
+<meta property="og:site_name" content="lirk随行">
+<meta property="og:description" content="FreeRTOS顾名思义：免费的实时操作系统操作系统:操作系统是允许多个任务“同时运行”的，操作系统的这个特性被称为多任务。然而实际上，一个 CPU 核心在某一时刻只能运行一个任务，而操作系统中任务调度器的责任就是决定在某一时刻 CPU 究竟要运行哪一个任务，任务调度器使得 CPU 在各个任务之间来回切换并处理任务，由于切换处理任务的速度非常快，因此就给人造成了一种同一时刻有多个任务同时运行的错觉">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2009-04-22T19:24:48.000Z">
+<meta property="article:modified_time" content="2023-01-29T06:51:24.000Z">
+<meta property="article:author" content="yuhuofei">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="lirk随行" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">lirk随行</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">机会不常有，但一定会有！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yuhuofei.com.cn/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/%E5%AD%A6%E4%B9%A0freertos%E7%9A%84%E7%AC%94%E8%AE%B0/freertos.html" class="article-date">
+  <time class="dt-published" datetime="2009-04-22T19:24:48.000Z" itemprop="datePublished">2009-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="FreeRTOS"><a href="#FreeRTOS" class="headerlink" title="FreeRTOS"></a>FreeRTOS</h1><p>顾名思义：免费的实时操作系统<br>操作系统:操作系统是允许多个任务“同时运行”的，操作系统的这个特性被称为多任务。然而实际上，一个 CPU 核心在某一时刻只能运行一个任务，而操作系统中任务调度器的责任就是决定在某一时刻 CPU 究竟要运行哪一个任务，任务调度器使得 CPU 在各个任务之间来回切换并处理任务，由于切换处理任务的速度非常快，因此就给人造成了一种同一时刻有多个任务同时运行<br>的错觉。<br>unix：操作系统为的任务调度为每一个任务分配同样的运行时间，时间到了，就切换下一个任务！<br>RTOS：操作系统的是任务调度器是可以预测的<code> 这就是嵌入式实时操作所需要的</code>RTOS系统的用户为每一个任务分配优先级，根据优先级决定下一刻应该运行哪一个任务！</p>
+<p>RTOS的优点：</p>
+<ul>
+<li>免费</li>
+<li>简单</li>
+<li>使用广泛</li>
+<li>资料齐全（都是全英文）</li>
+<li>可移植性强：只针对stm32</li>
+</ul>
+<p>RTOS特点：（根据需求进行修改裁剪）</p>
+<ul>
+<li>可移植性强</li>
+<li>可裁剪</li>
+<li>支持多种任务通讯、同步机制</li>
+<li>高效的软件定时器</li>
+<li>任务数量优先级数量不限</li>
+<li>运行效率高</li>
+<li>支持抢占式、合作式调度</li>
+<li>开源免费可商用</li>
+</ul>
+<p>FreeRTOS移植  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhuofei.com.cn/blog/%E5%AD%A6%E4%B9%A0freertos%E7%9A%84%E7%AC%94%E8%AE%B0/freertos.html" data-id="clefc0p0d00030ktdeprb60zl" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 yuhuofei<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
