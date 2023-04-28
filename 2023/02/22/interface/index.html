@@ -50,6 +50,14 @@
   <nav class="site-navigation">
     <ul>
       
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/Archives">归档</a></li>
+      
+        <li><a href="/%E5%85%B3%E4%BA%8E">关于</a></li>
+      
+        <li><a href="/rss">订阅</a></li>
+      
     </ul>
   </nav>
 </header>
@@ -118,6 +126,24 @@
 </article>
 
   
+	<section id="comment" class="comment">
+		<div id="gitalk-container"></div>
+	</section>
+	<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+	<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+	<script>
+		var gitalk = new Gitalk({
+			clientID: 'cd92bf5854decfb7b485',
+			clientSecret: 'bd2196fc63506d35e12641f4c75aa7b5d6910195',
+			repo: 'Yuhuofei.github.io',
+			owner: 'Yuorfly',
+			admin: ['Yuorfly'],
+			id: location.pathname,
+			distractionFreeMode: false
+		})
+		gitalk.render('gitalk-container')
+	</script>
+
 
 
 
